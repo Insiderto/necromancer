@@ -39,7 +39,7 @@ func _on_SelectionNode_selection_finished(selected):
 	if selected.size() == 0:
 		unselect_all()
 	else:
-		if !Input.is_action_pressed("shift_mod"):
+		if !Input.is_action_pressed("shift_mod"): # fasdfas
 			unselect_all()
 		select_all(selected)
 
