@@ -11,7 +11,7 @@ func _ready():
 	pass
 
 
-signal selection_started()
+signal selection_started
 signal selection_finished(selected)
 
 
@@ -26,9 +26,8 @@ func _unhandled_input(event):
 			emit_signal("selection_started")
 			drag_start = get_global_mouse_position()
 		elif dragging:
-			dragging = false			
+			dragging = false
 			drag_end = get_global_mouse_position()
-			update()
 			select_rect.extents = (drag_start - drag_end) / 2
 			var space = get_world_2d().direct_space_state
 			var query = Physics2DShapeQueryParameters.new()
@@ -36,8 +35,11 @@ func _unhandled_input(event):
 			query.transform = Transform2D(0, (drag_end + drag_start) / 2)
 			selected = space.intersect_shape(query)
 			emit_signal("selection_finished", selected)
-	if event is InputEventMouseMotion and dragging:
-		update()
+	
+
+
+func _process(delta):
+	update()
 
 
 func _draw():
