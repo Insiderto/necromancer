@@ -35,10 +35,9 @@ func _unhandled_input(event):
 			query.transform = Transform2D(0, (drag_end + drag_start) / 2)
 			selected = space.intersect_shape(query)
 			emit_signal("selection_finished", selected)
-	
 
 
-func _process(delta):
+func _process(_delta):
 	update()
 
 

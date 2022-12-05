@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var vieport: Vector2 = get_viewport().size
-export(int) var speed = 200
+export(int) var speed = 100
 
 var is_selecting = false
 
@@ -33,18 +33,18 @@ func _physics_process(_delta):
 	move_and_slide(get_input())
 
 
-func _on_SelectionNode_selection_finished(selected):
+func _on_UILayer_selection_finished(selected):
 	is_selecting = false
 
 	if selected.size() == 0:
 		unselect_all()
 	else:
-		if !Input.is_action_pressed("shift_mod"): # fasdfas
+		if !Input.is_action_pressed("shift_mod"):  # fasdfas
 			unselect_all()
 		select_all(selected)
 
 
-func _on_SelectionNode_selection_started():
+func _on_UILayer_selection_started():
 	is_selecting = true
 
 
@@ -57,6 +57,6 @@ func unselect_all():
 func select_all(candidates):
 	for el in candidates:
 		var selected_object = el.collider
-		if selected_object.has_method("select"): # is ISelectable 
+		if selected_object is Minion:
 			controlled_minions.append(selected_object)
 			selected_object.select()

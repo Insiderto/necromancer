@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Minion
+
 var is_selected: bool = false
 const outline_shader = preload("res://assets/materials/outline_shader.tres")
 
@@ -22,7 +24,7 @@ func select():
 	is_selected = true
 	$Sprite.set_material(outline_shader)
 	$Sprite.material.set_shader_param("width", 0.5)
-	
+
 
 func unselect():
 	is_selected = false
